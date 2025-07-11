@@ -1,4 +1,5 @@
 import { generateCodeChallenge, generateCodeVerifier } from "./utils/pkce";
+import "./styles/Login.css";
 
 const clientId = "b470ddb998e941ea8cca13ae01930a27";
 const redirectUri = "http://127.0.0.1:5173/callback";

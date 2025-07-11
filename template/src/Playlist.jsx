@@ -1,7 +1,7 @@
 function Playlist() {
   return (
     <>
-      <h2>PLAYLIST</h2>
+      <h2></h2>
     </>
   );
 }

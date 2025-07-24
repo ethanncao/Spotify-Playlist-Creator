@@ -1,32 +1,44 @@
+// Imports & Setup
 const express = require("express");
-const cors = require("cors");
-const dotenv = require("dotenv");
-const OpenAI = require("openai");
+const cors = require("cors"); // Allows our backend and frontend to connect
+const dotenv = require("dotenv"); // Loads our .env with our API key
+const OpenAI = require("openai"); // Used to access openAI
 
-dotenv.config();
+dotenv.config(); // loads our .env file
 
 const corsOptions = {
   origin: ["http://localhost:5173", "http://127.0.0.1:5173"],
   methods: ["GET", "POST"],
 };
 
-const app = express();
+const app = express(); // this initializes our backend server
 app.use(cors(corsOptions));
 app.use(express.json());
 
+// Creates our openAI bot with the key
 const openai = new OpenAI({
   apiKey: process.env.OPENAI_API_KEY,
 });
 
-console.log("Using API key:", process.env.OPENAI_API_KEY);
-
+// we choose to post info at /api/generate-tags
 app.post("/api/generate-tags", async (req, res) => {
   try {
+    // runs our chatgpt response
     const chatCompletion = await openai.chat.completions.create({
       model: "gpt-3.5-turbo",
-      messages: [{ role: "user", content: "Say hello!" }],
+      messages: [
+        {
+          role: "system",
+          content:
+            "You are a helpful assistant that turns user prompts into 3 Spotify genres and 3 matching artists.",
+        },
+        {
+          role: "user",
+          content: `User prompt: "${req.body.prompt}"\nGive me output like this :\nGeneres: [...]\nArtists: [...]`, // we send in our prompt here
+        },
+      ],
     });
-
+    // sends us back openAI's response
     res.json({ response: chatCompletion.choices[0].message.content });
   } catch (err) {
     console.error("❌ FULL OpenAI Error:", err);
@@ -34,6 +46,7 @@ app.post("/api/generate-tags", async (req, res) => {
   }
 });
 
+// this will start our server
 app.listen(5000, () => {
   console.log("✅ Server running on http://localhost:5000");
 });

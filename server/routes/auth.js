@@ -24,11 +24,41 @@ router.get("/login", (req, res) => {
   params.append("response_type", "code");
   params.append("redirect_uri", process.env.SPOTIFY_REDIRECT);
   params.append("scope", "user-top-read");
+  params.append("show_dialog", "true");
 
   const authURL = `https://accounts.spotify.com/authorize?${params.toString()}`;
   res.json({ authUrl: authURL });
 });
 
-router.get("/callback", (req, res) => {
+router.get("/callback", async (req, res) => {
   // once the user authorizes we need to use the code to get an access token
+  const code = req.query.code;
+  console.log("Authorization code received:", req.query.code);
+
+  const params = new URLSearchParams();
+  params.append("grant_type", "authorization_code");
+  params.append("code", code);
+  params.append("client_id", process.env.SPOTIFY_API_KEY);
+  params.append("redirect_uri", process.env.SPOTIFY_REDIRECT);
+  params.append("client_secret", process.env.SPOTIFY_SECRET);
+
+  try {
+    const tokenResponse = await fetch(
+      "https://accounts.spotify.com/api/token",
+      {
+        method: "POST",
+        headers: { "Content-Type": "application/x-www-form-urlencoded" },
+        body: params.toString(),
+      }
+    );
+
+    const tokenData = await tokenResponse.json();
+
+    res.json({ success: true, token: tokenData });
+  } catch (err) {
+    console.error("Error getting Spotify token:", err);
+    res.status(500).json({ error: "Failed to get token" });
+  }
 });
+
+module.exports = router;

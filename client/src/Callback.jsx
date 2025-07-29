@@ -1,9 +1,41 @@
+import { useEffect } from "react";
+import { useNavigate } from "react-router-dom";
+
 function Callback() {
-  return (
-    <div style={{ padding: "2rem" }}>
-      <h2>Your Top 3 Spotify Artists 🎵</h2>
-    </div>
-  );
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    const fetchToken = async () => {
+      const code = new URLSearchParams(window.location.search).get("code");
+      if (!code) {
+        console.error("No code found in URL");
+        return;
+      }
+
+      try {
+        const res = await fetch(
+          `http://localhost:5000/auth/callback?code=${code}`
+        );
+        const data = await res.json();
+
+        if (data.token?.access_token) {
+          console.log("✅ Access Token:", data.token.access_token);
+
+          // TODO: Save token somewhere (e.g. localStorage or context)
+          // localStorage.setItem("spotify_token", data.token.access_token);
+
+          // Navigate to the next screen
+          navigate("/playlist");
+        }
+      } catch (err) {
+        console.error("❌ Error fetching token:", err);
+      }
+    };
+
+    fetchToken();
+  }, [navigate]);
+
+  return <div>Authorizing with Spotify...</div>;
 }
 
 export default Callback;

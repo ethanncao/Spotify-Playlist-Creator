@@ -3,6 +3,8 @@ const express = require("express");
 const cors = require("cors"); // Allows our backend and frontend to connect
 const dotenv = require("dotenv"); // Loads our .env with our API key
 const OpenAI = require("openai"); // Used to access openAI
+const authRoutes = require("./routes/auth");
+const app = express();
 
 dotenv.config(); // loads our .env file
 
@@ -11,9 +13,9 @@ const corsOptions = {
   methods: ["GET", "POST"],
 };
 
-const app = express(); // this initializes our backend server
 app.use(cors(corsOptions));
 app.use(express.json());
+app.use("/auth", authRoutes);
 
 // Creates our openAI bot with the key
 const openai = new OpenAI({

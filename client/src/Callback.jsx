@@ -20,6 +20,7 @@ function Callback() {
 
         if (data.token?.access_token) {
           console.log("✅ Access Token:", data.token.access_token);
+          localStorage.setItem("spotify_token", data.token.access_token);
 
           // TODO: Save token somewhere (e.g. localStorage or context)
           // localStorage.setItem("spotify_token", data.token.access_token);

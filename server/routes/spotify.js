@@ -2,8 +2,8 @@ const express = require("express");
 
 const router = express.Router();
 
-router.get("/top-tracks", async (req, res) => {
-  const accessToken = req.headers.authorization?.split(" ")[1];
+router.post("/top-tracks", async (req, res) => {
+  const accessToken = req.body.token;
 
   if (!accessToken) {
     return res.status(400).json({ error: "Access token is required" });

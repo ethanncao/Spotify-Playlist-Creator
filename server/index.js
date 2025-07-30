@@ -5,6 +5,7 @@ const dotenv = require("dotenv"); // Loads our .env with our API key
 const OpenAI = require("openai"); // Used to access openAI
 const authRoutes = require("./routes/auth");
 const app = express();
+const spotifyRoutes = require("./routes/spotify");
 
 dotenv.config(); // loads our .env file
 
@@ -16,6 +17,7 @@ const corsOptions = {
 app.use(cors(corsOptions));
 app.use(express.json());
 app.use("/auth", authRoutes);
+app.use("/spotify", spotifyRoutes);
 
 // Creates our openAI bot with the key
 const openai = new OpenAI({

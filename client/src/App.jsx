@@ -16,8 +16,9 @@ function App() {
         <Routes>
           <Route path="/" element={<Login />} />
           <Route path="/callback" element={<Callback />} />
+          <Route path="/playlist" element={<Playlist />} />
           <Route
-            path="/playlist"
+            path="/promptinput"
             element={<PromptInput onTagsGenerated={handleTags} />}
           />
         </Routes>

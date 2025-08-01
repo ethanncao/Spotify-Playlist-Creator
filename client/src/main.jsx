@@ -7,6 +7,5 @@ import Playlist from "./Playlist.jsx";
 createRoot(document.getElementById("root")).render(
   <StrictMode>
     <App />
-    <Playlist />
   </StrictMode>
 );

@@ -7,7 +7,9 @@ import PromptInput from "./PromptInput.jsx";
 
 function App() {
   const handleTags = (response) => {
+    const genres = response.split(" ");
     console.log("OpenAI response:", response);
+    console.log(genres);
   };
 
   return (

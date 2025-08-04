@@ -24,4 +24,13 @@ router.post("/top-tracks", async (req, res) => {
   }
 });
 
+router.post("/recc-tracks", async (req, res) => {
+  console.log("request hit:");
+  const genres = req.body.genres;
+  const token = req.body.accessToken;
+
+  console.log(genres);
+  console.log(token);
+});
+
 module.exports = router;

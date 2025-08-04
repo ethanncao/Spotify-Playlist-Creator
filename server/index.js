@@ -34,11 +34,11 @@ app.post("/api/generate-tags", async (req, res) => {
         {
           role: "system",
           content:
-            "You are a helpful assistant that turns user prompts into 3 Spotify genres",
+            "You are a helpful assistant that turns user prompts into exactly 5 Spotify genres",
         },
         {
           role: "user",
-          content: `User prompt: "${req.body.prompt}"\nGive me output with just genres separated by spaces`, // we send in our prompt here
+          content: `User prompt: "${req.body.prompt}"\nGive me output with just valid spotify genres separated by spaces`, // we send in our prompt here
         },
       ],
     });

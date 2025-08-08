@@ -7,20 +7,27 @@ import PromptInput from "./PromptInput.jsx";
 
 function App() {
   const handleTags = async (response) => {
-    const genres = response.split(" ");
-    console.log("OpenAI response:", response);
-    console.log(genres);
+    const songs = JSON.parse(response);
     const accessToken = localStorage.getItem("spotify_token");
-    const res = await fetch("http://localhost:5000/spotify/recc-tracks", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({
-        genres,
-        accessToken,
-      }),
-    });
+    console.log("OpenAI response:", songs);
+
+    try {
+      const res = await fetch("http://localhost:5000/spotify/recc-tracks", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ tracks: songs, accessToken }),
+      });
+
+      if (!res.ok) {
+        console.error("Server error:", res.status);
+        return;
+      }
+
+      const data = await res.json();
+      console.log("Tracks from spotify:", data.results[0]);
+    } catch (err) {
+      console.error("Fetch failed", err);
+    }
   };
 
   return (

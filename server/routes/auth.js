@@ -23,7 +23,10 @@ router.get("/login", (req, res) => {
   params.append("client_id", process.env.SPOTIFY_API_KEY);
   params.append("response_type", "code");
   params.append("redirect_uri", process.env.SPOTIFY_REDIRECT);
-  params.append("scope", "user-top-read");
+  params.append(
+    "scope",
+    "user-top-read playlist-modify-private playlist-modify-public"
+  );
   params.append("show_dialog", "true");
 
   const authURL = `https://accounts.spotify.com/authorize?${params.toString()}`;

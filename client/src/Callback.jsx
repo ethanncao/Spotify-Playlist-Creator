@@ -26,7 +26,7 @@ function Callback() {
           // localStorage.setItem("spotify_token", data.token.access_token);
 
           // Navigate to the next screen
-          navigate("/playlist");
+          navigate("/prompt");
         }
       } catch (err) {
         console.error("❌ Error fetching token:", err);

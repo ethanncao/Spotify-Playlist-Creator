@@ -11,23 +11,24 @@ function App() {
     const accessToken = localStorage.getItem("spotify_token");
     console.log("OpenAI response:", songs);
 
-    try {
-      const res = await fetch("http://localhost:5000/spotify/recc-tracks", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ tracks: songs, accessToken }),
-      });
+    const res = await fetch("http://localhost:5000/spotify/build-playlist", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        accessToken,
+        tracks: songs,
+      }),
+    });
 
-      if (!res.ok) {
-        console.error("Server error:", res.status);
-        return;
-      }
-
-      const data = await res.json();
-      console.log("Tracks from spotify:", data.results[0]);
-    } catch (err) {
-      console.error("Fetch failed", err);
+    const data = await res.json();
+    if (!res.ok) {
+      console.error("Create playlist failed:", data);
+      alert("Failed to create playlist.");
+      return;
     }
+
+    console.log("Playlist created:", data);
+    if (data.url) window.open(data.url, "_blank");
   };
 
   return (

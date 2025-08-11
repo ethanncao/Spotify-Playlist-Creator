@@ -35,7 +35,7 @@ function PromptInput({ onTagsGenerated }) {
         placeholder="Describe your playlist vibe..."
       />
       <button type="submit" disabled={loading}>
-        {loading ? "Generating..." : "Generate Tags"}
+        {loading ? "Generating..." : "Generate Playlist"}
       </button>
     </form>
   );

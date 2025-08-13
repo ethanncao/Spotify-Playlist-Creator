@@ -37,6 +37,7 @@ body {
 
 .desc {
   font-size: 1.2rem;
+  font-weight: bold;
 }
 
 .footer {
@@ -99,9 +100,12 @@ ul {
 
 li {
   text-align: start;
+}
+
+.li-head {
   color: rgb(11, 206, 11);
-  font-weight: bolder;
   font-size: 1.5rem;
+  font-weight: bolder;
 }
 
 .li-desc {

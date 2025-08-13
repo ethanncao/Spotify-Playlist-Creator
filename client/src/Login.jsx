@@ -40,7 +40,7 @@ function Login() {
           <h2>How it works</h2>
           <ul>
             <li>
-              1) Log in with Spotify
+              <span className="li-head">1) Log in with Spotify</span>
               <div className="li-desc">
                 Connect your account so we can search tracks and save playlists
                 to your library. Don't worry, we will never post or follow
@@ -48,14 +48,14 @@ function Login() {
               </div>
             </li>
             <li>
-              2) Describe the vibe
+              <span className="li-head">2) Describe the vibe</span>
               <div className="li-desc">
                 Type a prompt like "late-night study beats". Add artists/genres
                 if you want.
               </div>
             </li>
             <li>
-              3) Get your playlist
+              <span className="li-head">3) Get your playlist</span>
               <div className="li-desc">
                 You now have a link to your playlist that you can open on
                 Spotify and save to your library.

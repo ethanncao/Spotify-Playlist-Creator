@@ -1,4 +1,5 @@
 import { useState } from "react";
+import "./styles/PromptInput.css";
 
 function PromptInput({ onTagsGenerated }) {
   const [prompt, setPrompt] = useState(""); // stores the text that the user inputs
@@ -28,16 +29,36 @@ function PromptInput({ onTagsGenerated }) {
   };
 
   return (
-    <form onSubmit={handleSubmit}>
-      <input
-        value={prompt}
-        onChange={(e) => setPrompt(e.target.value)}
-        placeholder="Describe your playlist vibe..."
-      />
-      <button type="submit" disabled={loading}>
-        {loading ? "Generating..." : "Generate Playlist"}
-      </button>
-    </form>
+    <div className="page">
+      <div className="prompt">
+        <div className="header">What's the mood for the playlist today?</div>
+
+        <form onSubmit={handleSubmit}>
+          <input
+            value={prompt}
+            onChange={(e) => setPrompt(e.target.value)}
+            placeholder="Describe your playlist..."
+          />
+          <button type="submit" disabled={loading}>
+            {loading ? "Generating..." : "Generate Playlist"}
+          </button>
+        </form>
+      </div>
+
+      <div className="tips">
+        <div>Pro Tips</div>
+        <ul>
+          <li>
+            Try adding details: energy level, decade, languages (e.g., "chill
+            lofi with piano, 2010s, instrumental)
+          </li>
+          <li>Use negatives to exclude: "no remixes, no live versions"</li>
+          <li>
+            Name a few prefered artists to steer the direction of the playlist
+          </li>
+        </ul>
+      </div>
+    </div>
   );
 }
 

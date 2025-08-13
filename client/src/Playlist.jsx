@@ -35,13 +35,13 @@ function Playlist() {
   return (
     <div>
       <h2>Your Top Tracks</h2>
-      <ul>
+      <ol>
         {tracks.map((track) => (
           <li key={track.id}>
             {track.name} by {track.artists.map((a) => a.name).join(", ")}
           </li>
         ))}
-      </ul>
+      </ol>
     </div>
   );
 }

@@ -1,0 +1,59 @@
+button {
+  background-color: rgb(8, 179, 8);
+  height: 3.7vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.page {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+body {
+  background-color: #181818;
+  color: #ffffff;
+  padding: 0px;
+  margin: 0px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.header {
+  font-size: 2rem;
+  font-weight: bolder;
+}
+
+input {
+  width: 30vw;
+  height: 3vh;
+  border-radius: 10px;
+}
+
+form {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+li {
+  color: white;
+  font-size: 1rem;
+  font-weight: bold;
+}
+
+.tips {
+  font-size: 1.5rem;
+  color: rgb(11, 206, 11);
+  font-weight: bolder;
+}
+
+.prompt {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-bottom: 5rem;
+}

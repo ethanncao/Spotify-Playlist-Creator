@@ -2,23 +2,26 @@
   display: flex;
   flex-direction: column;
   height: 100%;
-  gap: 25px;
+  gap: 10px;
+}
+
+.page {
 }
 
 body {
-  background-color: white;
-  color: black;
+  background-color: #181818;
+  color: #ffffff;
   padding: 0px;
   margin: 0px;
-  overflow: hidden;
 }
 
-button {
-  background-color: rgb(8, 160, 8);
+.login-btn {
+  background-color: rgb(8, 179, 8);
   display: inline-flex;
   align-items: center;
   justify-content: center;
   text-align: center;
+  max-width: 15rem;
   gap: 5px;
   font-size: 1rem;
 }
@@ -43,4 +46,75 @@ button {
   text-align: left;
   border-top: 1px solid black;
   padding-bottom: 0px;
+}
+
+img {
+  width: 1.8rem;
+  height: 1.8rem;
+}
+
+.logo-badge {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: rgb(39, 39, 39);
+  padding: 10px;
+  border-radius: 15px;
+}
+
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 2.5rem;
+}
+
+.brand-mark {
+  height: 3rem;
+  width: 3rem;
+}
+
+.btn-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 7px;
+  margin-top: 25px;
+}
+
+ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+li {
+  text-align: start;
+  color: rgb(11, 206, 11);
+  font-weight: bolder;
+  font-size: 1.5rem;
+}
+
+.li-desc {
+  color: white;
+  font-size: 1.2rem;
+  margin-top: 3px;
+}
+
+h2 {
+  font-size: 2.5rem;
+}
+
+.steps-container {
+  display: flex;
+  flex-direction: column;
 }

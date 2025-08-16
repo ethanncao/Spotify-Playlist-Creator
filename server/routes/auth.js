@@ -5,6 +5,10 @@ dotenv.config();
 
 const router = express.Router();
 
+const CLIENT_ID = process.env.SPOTIFY_CLIENT_ID || process.env.SPOTIFY_API_KEY;
+const REDIRECT_URI =
+  process.env.SPOTIFY_REDIRECT_URI || process.env.SPOTIFY_REDIRECT;
+
 // create a route at /auth/login that constructs the correct Spotify authorization URL with all required query parameters and sends it back in a JSON response to the frontend
 router.get("/login", (req, res) => {
   // this creates a GET route
@@ -28,6 +32,11 @@ router.get("/login", (req, res) => {
     "user-top-read playlist-modify-private playlist-modify-public"
   );
   params.append("show_dialog", "true");
+
+  console.log("[/auth/login]", {
+    client_id_prefix: CLIENT_ID ? CLIENT_ID.slice(0, 6) + "…" : "MISSING",
+    redirect_uri: REDIRECT_URI,
+  });
 
   const authURL = `https://accounts.spotify.com/authorize?${params.toString()}`;
   res.json({ authUrl: authURL });

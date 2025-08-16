@@ -3,7 +3,7 @@ import { API_BASE } from "./config";
 
 function Login() {
   const handleLogin = async () => {
-    console.loge("API_BASE in prod =", API_BASE);
+    console.log("API_BASE in prod =", API_BASE);
     const res = await fetch(`${API_BASE}/auth/login`);
     const data = await res.json();
     window.location.href = data.authUrl;

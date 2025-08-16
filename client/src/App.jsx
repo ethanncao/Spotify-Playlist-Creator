@@ -1,4 +1,5 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { API_BASE } from "./config";
 import "./App.css";
 import Playlist from "./Playlist.jsx";
 import Login from "./Login.jsx";
@@ -11,7 +12,7 @@ function App() {
     const accessToken = localStorage.getItem("spotify_token");
     console.log("OpenAI response:", songs);
 
-    const res = await fetch("http://localhost:5000/spotify/build-playlist", {
+    const res = await fetch(`${API_BASE}/spotify/build-playlist`, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({

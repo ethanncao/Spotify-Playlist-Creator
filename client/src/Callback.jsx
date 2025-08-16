@@ -1,5 +1,6 @@
 import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
+import { API_BASE } from "./config";
 
 function Callback() {
   const navigate = useNavigate();
@@ -13,9 +14,7 @@ function Callback() {
       }
 
       try {
-        const res = await fetch(
-          `http://localhost:5000/auth/callback?code=${code}`
-        );
+        const res = await fetch(`${API_BASE}/auth/callback?code=${code}`);
         const data = await res.json();
 
         if (data.token?.access_token) {

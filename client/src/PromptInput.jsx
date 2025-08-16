@@ -1,5 +1,6 @@
 import { useState } from "react";
 import "./styles/PromptInput.css";
+import { API_BASE } from "./config";
 
 function PromptInput({ onTagsGenerated }) {
   const [prompt, setPrompt] = useState(""); // stores the text that the user inputs
@@ -12,7 +13,7 @@ function PromptInput({ onTagsGenerated }) {
 
     try {
       // make a POST request to backend
-      const res = await fetch("http://localhost:5000/api/generate-tags", {
+      const res = await fetch(`${API_BASE}/api/generate-tags`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ prompt }), // ← uses the inputted prompt

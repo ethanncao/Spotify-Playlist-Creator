@@ -1,5 +1,6 @@
 /* eslint-disable no-unused-vars */
 import { useEffect, useState } from "react";
+import { API_BASE } from "./config";
 
 function Playlist() {
   const [tracks, setTracks] = useState([]);
@@ -11,7 +12,7 @@ function Playlist() {
       if (!token) return;
 
       try {
-        const res = await fetch("http://localhost:5000/spotify/top-tracks", {
+        const res = await fetch(`${API_BASE}/spotify/top-tracks`, {
           method: "POST",
           headers: {
             "Content-Type": "application/json",

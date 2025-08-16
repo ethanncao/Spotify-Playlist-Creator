@@ -52,5 +52,5 @@ app.post("/api/generate-tags", async (req, res) => {
 
 // this will start our server
 app.listen(5000, () => {
-  console.log("✅ Server running on http://localhost:5000");
+  console.log("✅ Server running on render");
 });
